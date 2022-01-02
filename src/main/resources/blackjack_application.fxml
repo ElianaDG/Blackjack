@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="BlackjackController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <TextField fx:id="betAmount" />
+    <Label fx:id="totalBetLabel" />
+    <Label fx:id="myCardsTotalLabel"/>
+    <Label fx:id="dealerCardsTotalLabel"/>
+    <Label fx:id="errorMessage"/>
+
+    <Button fx:id="betButton" onAction="#onGetCard" text="Bet"/>
+    <Button fx:id="hitButton" onAction="#onGetCard" text="Hit"/>
+    <Button fx:id="startButton" text="Start Playing" onAction="#onStartRound"/>
+
+
+    <Label fx:id="playerCard1" onMouseClicked="#onGetCard" />
+    <Label fx:id="playerCard2" onMouseClicked="#onGetCard" />
+    <Label fx:id="playerCard3" onMouseClicked="#onGetCard" />
+    <Label fx:id="playerCard4" onMouseClicked="#onGetCard" />
+    <Label fx:id="playerCard5" onMouseClicked="#onGetCard" />
+    <Label fx:id="playerCard6" onMouseClicked="#onGetCard" />
+    <Label fx:id="playerCard7" onMouseClicked="#onGetCard" />
+    <Label fx:id="playerCard8" onMouseClicked="#onGetCard" />
+    <Label fx:id="playerCard9" onMouseClicked="#onGetCard" />
+    <Label fx:id="playerCard10" onMouseClicked="#onGetCard" />
+    <Label fx:id="playerCard11" onMouseClicked="#onGetCard" />
+
+    <Label fx:id="dealerCard1" onMouseClicked="#onGetCard" />
+    <Label fx:id="dealerCard2" onMouseClicked="#onGetCard" />
+    <Label fx:id="dealerCard3" onMouseClicked="#onGetCard" />
+    <Label fx:id="dealerCard4" onMouseClicked="#onGetCard" />
+    <Label fx:id="dealerCard5" onMouseClicked="#onGetCard" />
+    <Label fx:id="dealerCard6" onMouseClicked="#onGetCard" />
+    <Label fx:id="dealerCard7" onMouseClicked="#onGetCard" />
+    <Label fx:id="dealerCard8" onMouseClicked="#onGetCard" />
+    <Label fx:id="dealerCard9" onMouseClicked="#onGetCard" />
+    <Label fx:id="dealerCard10" onMouseClicked="#onGetCard" />
+    <Label fx:id="dealerCard11" onMouseClicked="#onGetCard" />
+
+    <fx:define>
+        <ArrayList fx:id="myCardsLabels">
+            <fx:reference source="playerCard1"/>
+            <fx:reference source="playerCard2"/>
+            <fx:reference source="playerCard3"/>
+            <fx:reference source="playerCard4"/>
+            <fx:reference source="playerCard5"/>
+            <fx:reference source="playerCard6"/>
+            <fx:reference source="playerCard7"/>
+            <fx:reference source="playerCard8"/>
+            <fx:reference source="playerCard9"/>
+            <fx:reference source="playerCard10"/>
+            <fx:reference source="playerCard11"/>
+        </ArrayList>
+        <ArrayList fx:id="dealerCardsLabels">
+            <fx:reference source="dealerCard1"/>
+            <fx:reference source="dealerCard2"/>
+            <fx:reference source="dealerCard3"/>
+            <fx:reference source="dealerCard4"/>
+            <fx:reference source="dealerCard5"/>
+            <fx:reference source="dealerCard6"/>
+            <fx:reference source="dealerCard7"/>
+            <fx:reference source="dealerCard8"/>
+            <fx:reference source="dealerCard9"/>
+            <fx:reference source="dealerCard10"/>
+            <fx:reference source="dealerCard11"/>
+        </ArrayList>
+    </fx:define>
+
+</GridPane>
