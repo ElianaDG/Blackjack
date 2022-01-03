@@ -15,36 +15,39 @@
     <Label fx:id="totalBetLabel" />
     <Label fx:id="myCardsTotalLabel"/>
     <Label fx:id="dealerCardsTotalLabel"/>
+    <Label fx:id="earningsLabel"/>
     <Label fx:id="errorMessage"/>
+    <Label fx:id="winnerLabel"/>
 
-    <Button fx:id="betButton" onAction="#onGetCard" text="Bet"/>
-    <Button fx:id="hitButton" onAction="#onGetCard" text="Hit"/>
+    <Button fx:id="betButton" onAction="#onBet" text="Bet"/>
+    <Button fx:id="hitButton" onAction="#onHit" text="Hit"/>
+    <Button fx:id="standButton" onAction="#onStand" text="Stand"/>
     <Button fx:id="startButton" text="Start Playing" onAction="#onStartRound"/>
 
 
-    <Label fx:id="playerCard1" onMouseClicked="#onGetCard" />
-    <Label fx:id="playerCard2" onMouseClicked="#onGetCard" />
-    <Label fx:id="playerCard3" onMouseClicked="#onGetCard" />
-    <Label fx:id="playerCard4" onMouseClicked="#onGetCard" />
-    <Label fx:id="playerCard5" onMouseClicked="#onGetCard" />
-    <Label fx:id="playerCard6" onMouseClicked="#onGetCard" />
-    <Label fx:id="playerCard7" onMouseClicked="#onGetCard" />
-    <Label fx:id="playerCard8" onMouseClicked="#onGetCard" />
-    <Label fx:id="playerCard9" onMouseClicked="#onGetCard" />
-    <Label fx:id="playerCard10" onMouseClicked="#onGetCard" />
-    <Label fx:id="playerCard11" onMouseClicked="#onGetCard" />
+    <Label fx:id="playerCard1"  />
+    <Label fx:id="playerCard2"  />
+    <Label fx:id="playerCard3"  />
+    <Label fx:id="playerCard4"  />
+    <Label fx:id="playerCard5"  />
+    <Label fx:id="playerCard6"  />
+    <Label fx:id="playerCard7"  />
+    <Label fx:id="playerCard8"  />
+    <Label fx:id="playerCard9"  />
+    <Label fx:id="playerCard10"  />
+    <Label fx:id="playerCard11"  />
 
-    <Label fx:id="dealerCard1" onMouseClicked="#onGetCard" />
-    <Label fx:id="dealerCard2" onMouseClicked="#onGetCard" />
-    <Label fx:id="dealerCard3" onMouseClicked="#onGetCard" />
-    <Label fx:id="dealerCard4" onMouseClicked="#onGetCard" />
-    <Label fx:id="dealerCard5" onMouseClicked="#onGetCard" />
-    <Label fx:id="dealerCard6" onMouseClicked="#onGetCard" />
-    <Label fx:id="dealerCard7" onMouseClicked="#onGetCard" />
-    <Label fx:id="dealerCard8" onMouseClicked="#onGetCard" />
-    <Label fx:id="dealerCard9" onMouseClicked="#onGetCard" />
-    <Label fx:id="dealerCard10" onMouseClicked="#onGetCard" />
-    <Label fx:id="dealerCard11" onMouseClicked="#onGetCard" />
+    <Label fx:id="dealerCard1"  />
+    <Label fx:id="dealerCard2"  />
+    <Label fx:id="dealerCard3"  />
+    <Label fx:id="dealerCard4"  />
+    <Label fx:id="dealerCard5"  />
+    <Label fx:id="dealerCard6"  />
+    <Label fx:id="dealerCard7"  />
+    <Label fx:id="dealerCard8"  />
+    <Label fx:id="dealerCard9"  />
+    <Label fx:id="dealerCard10"  />
+    <Label fx:id="dealerCard11"  />
 
     <fx:define>
         <ArrayList fx:id="myCardsLabels">
