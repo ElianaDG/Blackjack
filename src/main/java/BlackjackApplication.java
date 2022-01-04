@@ -4,8 +4,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import static javafx.application.Application.launch;
-
 public class BlackjackApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {

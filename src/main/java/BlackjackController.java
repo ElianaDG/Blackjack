@@ -24,7 +24,6 @@ public class BlackjackController {
     boolean gameOver = false;
     boolean dealerBlackjack = false;
     boolean meBlackjack = false;
-    //EVERYWHERE WHERE GAMEOVER IS TRUE CALL METHOD ROUNDOVER()
 
     private final CardDeck deck;
 
@@ -56,11 +55,11 @@ public class BlackjackController {
                 messageLabel.setText("You and the dealer both have a natural blackjack.");
                 gameOver = true;
                 roundOver();
-            } else if(dealerBlackjack && !meBlackjack){
+            } else if(dealerBlackjack){
                 messageLabel.setText("dealer has blackjack. You lose");
                 gameOver = true;
                 roundOver();
-            } else if(!dealerBlackjack && meBlackjack){
+            } else if(meBlackjack){
                 messageLabel.setText("You have blackjack and the dealer does not. You win!");
                 earnings += (totalBet * 1.5);
                 earningsLabel.setText(String.valueOf(earnings));
@@ -158,17 +157,20 @@ public class BlackjackController {
             earnings += totalBet;
             earningsLabel.setText(String.valueOf(earnings));
             gameOver = true;
+            roundOver();
         } else if (myCardsTotal < dealerCardsTotal ||
                 myCardsTotal == dealerCardsTotal) {
             messageLabel.setText("The dealer beat you");
             earnings -= totalBet;
             earningsLabel.setText(String.valueOf(earnings));
             gameOver = true;
+            roundOver();
         } else {
             messageLabel.setText("You win!");
             earnings += totalBet;
             earningsLabel.setText(String.valueOf(earnings));
             gameOver = true;
+            roundOver();
         }
         //if he gets an ace and if he uses it as an 11 it would take him to >= 17, but not over 21
         //then he has to count it as an 11 and stand
@@ -188,6 +190,7 @@ public class BlackjackController {
         }
         dealersTurn();
         gameOver = true;
+        roundOver();
     }
 
     public void onHit(ActionEvent actionEvent) {

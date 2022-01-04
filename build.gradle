@@ -1,19 +1,27 @@
 plugins {
+    id 'org.openjfx.javafxplugin' version '0.0.9'
     id 'java'
 }
 
+javafx {
+    version = '12'
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = 'BlackjackApplication'
+
 group 'org.example'
 version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-}
-
-test {
-    useJUnitPlatform()
+    implementation 'com.google.code.gson:gson:2.8.9'
+    testImplementation "org.mockito:mockito-inline:3.8.0"
 }
