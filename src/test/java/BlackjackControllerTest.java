@@ -8,7 +8,7 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 
 public class BlackjackControllerTest {
-    private CardDeck deck;
+    private Deck deck;
     private BlackjackController controller;
     private List<Label> dealerLabels;
     private List<Label> playerLabels;
@@ -19,7 +19,7 @@ public class BlackjackControllerTest {
     public static void beforeClass(){com.sun.javafx.application.PlatformImpl.startup(()->{});}
 
     private void givenBlackjackController(){
-        deck = mock(CardDeck.class);
+        deck = mock(Deck.class);
         controller = new BlackjackController(deck);
         dealerLabels = Arrays.asList(
                 mock(Label.class),

@@ -25,9 +25,9 @@ public class BlackjackController {
     boolean dealerBlackjack = false;
     boolean meBlackjack = false;
 
-    private final CardDeck deck;
+    private final Deck deck;
 
-    public BlackjackController(CardDeck deck) {
+    public BlackjackController(Deck deck) {
         this.deck = deck;
     }
 
@@ -105,9 +105,9 @@ public class BlackjackController {
 
     public void dealPlayers() {
         //deal each player a card face up, including dealer
-        int card = deck.nextCard();
-        if (card != 1) {
-            myCardsTotal += card;
+        Card card = deck.nextCard();
+        if (card.value != 11) {
+            myCardsTotal += card.value;
         } else {
             myOnes++;
         }
@@ -124,15 +124,15 @@ public class BlackjackController {
         dealPlayers();
         dealPlayers();
 
-        int card = deck.nextCard();
-        if (card != 1) {
-            dealerCardsTotal += card;
+        Card card = deck.nextCard();
+        if (card.value != 11) {
+            dealerCardsTotal += card.value;
         } else {
             dealerOnes++;
         }
         dealerCardsLabels.get(0).setText(String.valueOf(card));
 
-        dealerFaceDown = deck.nextCard();
+        dealerFaceDown = deck.nextCard().value;
 
     }
 
@@ -142,14 +142,14 @@ public class BlackjackController {
         dealerCardsTotal += dealerFaceDown;
 
         while (dealerCardsTotal <= 16) {
-            int card = deck.nextCard();
+            Card card = deck.nextCard();
             for (Label label : dealerCardsLabels) {
                 if (label.getText().equals("")) {
                     label.setText(String.valueOf(card));
                     break;
                 }
             }
-            dealerCardsTotal += card;
+            dealerCardsTotal += card.value;
             dealerCardsTotalLabel.setText(String.valueOf(myCardsTotal));
         }
         if (dealerCardsTotal > 21) {
@@ -219,11 +219,11 @@ public class BlackjackController {
     }
 
     public void getCard() {
-        int newCard = deck.nextCard();
+        Card newCard = deck.nextCard();
         for (Label card : myCardsLabels) {
             if (card.getText() == null) { //.equals("") ??
                 card.setText(String.valueOf(newCard));
-                myCardsTotal += newCard;
+                myCardsTotal += newCard.value;
                 myCardsTotalLabel.setText(String.valueOf(myCardsTotal));
             }
         }
