@@ -20,14 +20,14 @@ public class BlackjackControllerTest {
 
     private void givenBlackjackController(){
         deck = mock(Deck.class);
-        controller = new BlackjackController(deck);
+        controller = new BlackjackController();
         dealerLabels = Arrays.asList(
                 mock(Label.class),
                 mock(Label.class),
                 mock(Label.class),
                 mock(Label.class)
         );
-        controller.dealerCardsLabels = dealerLabels;
+        controller.dealerCards = dealerLabels;
 
         playerLabels = Arrays.asList(
                 mock(Label.class),
@@ -35,7 +35,7 @@ public class BlackjackControllerTest {
                 mock(Label.class),
                 mock(Label.class)
         );
-        controller.myCardsLabels = playerLabels;
+        controller.playerCards = playerLabels;
 
         message = mock(Label.class);
         controller.messageLabel = message;

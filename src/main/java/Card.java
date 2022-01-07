@@ -8,18 +8,15 @@ import javafx.scene.text.Text;
 
 public class Card extends Parent {
 
-    private final int WIDTH = 100;
-    private final int HEIGHT = 140;
-
     enum Suit{
         SPADES, DIAMONDS, HEARTS, CLUBS;
 
-        final Image image;
-
-        Suit() {
-            this.image = new Image(Card.class.getResourceAsStream("images/".concat(name().toLowerCase()).concat(".png")),
-                    32, 32, true, true);
-        }
+//        final Image image;
+//
+//        Suit() {
+//            this.image = new Image(Card.class.getResourceAsStream("images/".concat(name().toLowerCase()).concat(".png")),
+//                    32, 32, true, true);
+//        }
     }
     enum Rank{
         ACE(11), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7),
@@ -44,27 +41,29 @@ public class Card extends Parent {
         this.rank = rank;
         this.value = rank.value;
 
-        Rectangle bg = new Rectangle(WIDTH, HEIGHT);
+        int width = 100;
+        int height = 140;
+        Rectangle bg = new Rectangle(width, height);
         bg.setArcWidth(20);
         bg.setArcHeight(20);
         bg.setFill(Color.WHITE);
 
         Text text1 = new Text(rank.showCard());
         text1.setFont(Font.font(18));
-        text1.setX(WIDTH - text1.getLayoutBounds().getWidth() - 10);
+        text1.setX(width - text1.getLayoutBounds().getWidth() - 10);
         text1.setY(text1.getLayoutBounds().getHeight());
 
         Text text2 = new Text(text1.getText());
         text2.setFont(Font.font(18));
         text2.setX(10);
-        text2.setY(HEIGHT - 10);
+        text2.setY(height - 10);
 
-        ImageView view = new ImageView(suit.image);
-        view.setRotate(180);
-        view.setX(WIDTH - 32);
-        view.setY(HEIGHT - 32);
-
-        getChildren().addAll(bg, new ImageView(suit.image), view, text1, text2);
+//        ImageView view = new ImageView(suit.image);
+//        view.setRotate(180);
+//        view.setX(WIDTH - 32);
+//        view.setY(HEIGHT - 32);
+//
+//        getChildren().addAll(bg, new ImageView(suit.image), view, text1, text2);
     }
 
     @Override
