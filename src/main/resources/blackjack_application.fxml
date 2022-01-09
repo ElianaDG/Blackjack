@@ -13,7 +13,7 @@
 
     <TextField fx:id="betAmount" GridPane.rowIndex="2" GridPane.columnIndex="11"/>
     <Label fx:id="totalBetLabel" GridPane.rowIndex="2" GridPane.columnIndex="10"/>
-    <Label fx:id="myCardsTotalLabel" GridPane.rowIndex="5" GridPane.columnIndex="12"/>
+    <Label fx:id="playerCardsTotalLabel" GridPane.rowIndex="5" GridPane.columnIndex="12"/>
     <Label fx:id="dealerCardsTotalLabel" GridPane.rowIndex="1" GridPane.columnIndex="12"/>
     <Label fx:id="messageLabel" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
 

@@ -40,23 +40,23 @@ public class Card extends Parent {
         this.suit = suit;
         this.rank = rank;
         this.value = rank.value;
-
-        int width = 100;
-        int height = 140;
-        Rectangle bg = new Rectangle(width, height);
-        bg.setArcWidth(20);
-        bg.setArcHeight(20);
-        bg.setFill(Color.WHITE);
-
-        Text text1 = new Text(rank.showCard());
-        text1.setFont(Font.font(18));
-        text1.setX(width - text1.getLayoutBounds().getWidth() - 10);
-        text1.setY(text1.getLayoutBounds().getHeight());
-
-        Text text2 = new Text(text1.getText());
-        text2.setFont(Font.font(18));
-        text2.setX(10);
-        text2.setY(height - 10);
+//
+//        int width = 100;
+//        int height = 140;
+//        Rectangle bg = new Rectangle(width, height);
+//        bg.setArcWidth(20);
+//        bg.setArcHeight(20);
+//        bg.setFill(Color.WHITE);
+//
+//        Text text1 = new Text(rank.showCard());
+//        text1.setFont(Font.font(18));
+//        text1.setX(width - text1.getLayoutBounds().getWidth() - 10);
+//        text1.setY(text1.getLayoutBounds().getHeight());
+//
+//        Text text2 = new Text(text1.getText());
+//        text2.setFont(Font.font(18));
+//        text2.setX(10);
+//        text2.setY(height - 10);
 
 //        ImageView view = new ImageView(suit.image);
 //        view.setRotate(180);
