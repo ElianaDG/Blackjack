@@ -11,7 +11,7 @@ public class BlackjackApplication extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("/blackjack_application.fxml"));
 
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root, 700, 400);
 
         stage.setTitle("Blackjack");
         stage.setScene(scene);

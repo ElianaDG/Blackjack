@@ -56,13 +56,13 @@ public class BlackjackControllerTest {
     public void initialize(){
         //given
         givenBlackjackController();
-        doReturn("You got this!").when(controller.messageLabel).getText();
+        doReturn("You must place a bet to enter the round.").when(controller.messageLabel).getText();
 
         //when
         controller.initialize();
 
         //then
-        verify(controller.messageLabel).setText("You got this!");
+        verify(controller.messageLabel).setText("You must place a bet to enter the round.");
 
     }
 
