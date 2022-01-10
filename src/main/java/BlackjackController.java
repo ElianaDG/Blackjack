@@ -1,19 +1,18 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 
 public class BlackjackController {
 
     @FXML
-    List<Label> playerCards, dealerCards;
+    List<ImageView> playerCards, dealerCards;
     @FXML
     TextField betTextField;
     @FXML
@@ -26,6 +25,7 @@ public class BlackjackController {
     int playerAces;
     int dealerAces;
     int dealerFaceDown;
+    Card dealerFaceDownCard;
     boolean gameInProgress;
 
     private final Deck deck = new Deck();
@@ -44,7 +44,7 @@ public class BlackjackController {
         dealerFaceDown = 0;
     }
 
-    public void onStartRound(ActionEvent actionEvent) {
+    public void onStartRound(ActionEvent actionEvent) throws IOException {
         if (gameInProgress == true) {
             messageLabel.setText("There is a game in progress");
         } else {
@@ -109,60 +109,59 @@ public class BlackjackController {
         }
     }
 
-    private void dealPlayer() {
-        Card card = deck.nextCard();
-        playerTotal += card.value;
+    private void dealPlayer() throws IOException {
+        Card card = deck.dealCard();
+        playerTotal += card.getValue();
         playerCardsTotalLabel.setText(String.valueOf(playerTotal));
-        if (card.value == 11) {
+        if (card.getValue() == 11) {
             playerAces++;
         }
-        for (Label label : playerCards) {
-            if (label.getText().equals("")) {
-                label.setText(String.valueOf(card.value));
-                label.applyCss();
+        for (ImageView imageView : playerCards) {
+            if (imageView.getImage() == null) {
+                imageView.setImage(new Image(String.valueOf(card.showCard())));
                 break;
             }
         }
     }
 
-    private void firstRound() {
+    private void firstRound() throws IOException {
         dealPlayer();
         dealPlayer();
 
-        Card cardOne = deck.nextCard();
-        dealerTotal += cardOne.value;
-        if (cardOne.value == 11) {
+        Card cardOne = deck.dealCard();
+        dealerTotal += cardOne.getValue();
+        if (cardOne.getValue() == 11) {
             dealerAces++;
         }
-        dealerCards.get(0).setText(String.valueOf(cardOne.value));
-        dealerCardsTotalLabel.setText(String.valueOf(cardOne.value));
+        dealerCards.get(0).setImage(new Image(String.valueOf(cardOne.showCard())));
+        dealerCardsTotalLabel.setText(String.valueOf(cardOne.getValue()));
 
-        Card cardTwo = deck.nextCard();
-        dealerFaceDown = cardTwo.value;
-        dealerTotal += cardTwo.value;
-        if (cardTwo.value == 11 && cardOne.value == 11) {
+        Card dealerFaceDownCard = deck.dealCard();
+        dealerFaceDown = dealerFaceDownCard.getValue();
+        dealerTotal += dealerFaceDownCard.getValue();
+        if (dealerFaceDownCard.getValue() == 11 && cardOne.getValue() == 11) {
             dealerTotal -= 10;
             dealerFaceDown = 1;
-        } else if(cardTwo.value == 11){
+        } else if(dealerFaceDownCard.getValue() == 11){
             dealerAces++;
         }
     }
 
-    private void dealersTurn() {
-        dealerCards.get(1).setText(String.valueOf(dealerFaceDown));
+    private void dealersTurn() throws IOException {
+        dealerCards.get(1).setImage(new Image(String.valueOf(dealerFaceDownCard.showCard())));
         dealerCardsTotalLabel.setText(String.valueOf(dealerTotal));
 
         while (dealerTotal <= 16) {
-            Card card = deck.nextCard();
-            dealerTotal += card.value;
-            if(card.value == 11 && (dealerTotal > 21)){
+            Card card = deck.dealCard();
+            dealerTotal += card.getValue();
+            if(card.getValue() == 11 && (dealerTotal > 21)){
                 messageLabel.setText("Dealer has to count Ace as value 1");
                 dealerTotal -= 10;
             }
             dealerCardsTotalLabel.setText(String.valueOf(dealerTotal));
-            for (Label label : dealerCards) {
-                if (label.getText().equals("")) {
-                    label.setText(String.valueOf(card.value));
+            for (ImageView imageView : dealerCards) {
+                if (imageView.getImage() == null) {
+                    imageView.setImage(new Image(String.valueOf(card.showCard())));
                     break;
                 }
             }
@@ -186,7 +185,7 @@ public class BlackjackController {
         }
     }
 
-    public void onStand(ActionEvent actionEvent) {
+    public void onStand(ActionEvent actionEvent) throws IOException {
         if (gameInProgress == false) {
             messageLabel.setText("Click Start to begin a new game.");
         } else{
@@ -194,7 +193,7 @@ public class BlackjackController {
         }
     }
 
-    public void onHit(ActionEvent actionEvent) {
+    public void onHit(ActionEvent actionEvent) throws IOException {
         if (gameInProgress == false) {
             messageLabel.setText("Click Start to begin a new game.");
         } else{
@@ -218,11 +217,11 @@ public class BlackjackController {
     }
 
     private void clearTable() {
-        for (Label card : playerCards) {
-            card.setText("");
+        for (ImageView imageView : playerCards) {
+            imageView.setImage(null);
         }
-        for (Label card : dealerCards) {
-            card.setText("");
+        for (ImageView imageView : dealerCards) {
+            imageView.setImage(null);
         }
         dealerCardsTotalLabel.setText("");
         dealerTotal = 0;

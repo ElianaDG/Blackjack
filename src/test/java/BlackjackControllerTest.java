@@ -1,9 +1,11 @@
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,8 +14,8 @@ import static org.mockito.Mockito.*;
 public class BlackjackControllerTest {
     private Deck deck;
     private BlackjackController controller;
-    private List<Label> dealerLabels;
-    private List<Label> playerLabels;
+    private List<ImageView> dealerImages;
+    private List<ImageView> playerImages;
     private Label messageLabel, playerCardsTotalLabel, dealerCardsTotalLabel;
     private TextField betAmount;
 
@@ -23,21 +25,21 @@ public class BlackjackControllerTest {
     private void givenBlackjackController(){
         deck = mock(Deck.class);
         controller = new BlackjackController();
-        dealerLabels = Arrays.asList(
-                mock(Label.class),
-                mock(Label.class),
-                mock(Label.class),
-                mock(Label.class)
+        dealerImages = Arrays.asList(
+                mock(ImageView.class),
+                mock(ImageView.class),
+                mock(ImageView.class),
+                mock(ImageView.class)
         );
-        controller.dealerCards = dealerLabels;
+        controller.dealerCards = dealerImages;
 
-        playerLabels = Arrays.asList(
-                mock(Label.class),
-                mock(Label.class),
-                mock(Label.class),
-                mock(Label.class)
+        playerImages = Arrays.asList(
+                mock(ImageView.class),
+                mock(ImageView.class),
+                mock(ImageView.class),
+                mock(ImageView.class)
         );
-        controller.playerCards = playerLabels;
+        controller.playerCards = playerImages;
 
         messageLabel = mock(Label.class);
         controller.messageLabel = messageLabel;
@@ -66,7 +68,7 @@ public class BlackjackControllerTest {
     }
 
     @Test
-    public void onDealerNaturalBlackjack(){
+    public void onDealerNaturalBlackjack() throws IOException {
         //given
         givenBlackjackController();
         doReturn("21").when(controller.dealerCardsTotalLabel).getText();
@@ -82,7 +84,7 @@ public class BlackjackControllerTest {
         verify(controller.messageLabel).setText("The dealer has blackjack. You lose");
     }
     @Test
-    public void onPlayerNaturalBlackjack(){
+    public void onPlayerNaturalBlackjack() throws IOException {
         //given
         givenBlackjackController();
         int earnings = 100;
@@ -99,7 +101,7 @@ public class BlackjackControllerTest {
         verify(controller.messageLabel).setText("You have blackjack and the dealer does not. You win 100");
     }
     @Test
-    public void onBothNaturalBlackjack(){
+    public void onBothNaturalBlackjack() throws IOException {
         //given
         givenBlackjackController();
         doReturn("21").when(controller.dealerCardsTotalLabel).getText();
@@ -133,7 +135,7 @@ public class BlackjackControllerTest {
 
     }
     @Test
-    public void onStand(){
+    public void onStand() throws IOException {
         //given
         givenBlackjackController();
 
@@ -145,7 +147,7 @@ public class BlackjackControllerTest {
 
     }
     @Test
-    public void onHit(){
+    public void onHit() throws IOException {
         //given
         givenBlackjackController();
         doReturn("21").when(controller.playerCardsTotalLabel).getText();

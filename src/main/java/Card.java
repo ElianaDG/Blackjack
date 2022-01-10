@@ -1,33 +1,39 @@
-import javafx.scene.Parent;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class Card extends Parent {
+public class Card {
 
-    enum Suit{
-        SPADES, DIAMONDS, HEARTS, CLUBS;
-    }
-    enum Rank{
-        ACE(11), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7),
-        EIGHT(8), NINE(9), TEN(10), JACK(10), QUEEN(10), KING(10);
+    private final int suit;
+    private final int rank;
+    private final int value;
+    private int x;
+    private int y;
 
-        int value;
-        Rank(int value){
-            this.value = value;
-        }
-    }
-
-    public final Suit suit;
-    public final Rank rank;
-    public final int value;
-
-    public Card(Suit suit, Rank rank){
+    public Card(int suit, int rank, int value){
         this.suit = suit;
         this.rank = rank;
-        this.value = rank.value;
+        this.value = value;
+    }
+
+    public int getSuit(){return suit;}
+
+    public int getRank() {return rank;}
+
+    public int getValue() {return value;}
+
+    public BufferedImage showCard() throws IOException {
+        int width = 950;
+        int height = 392;
+        BufferedImage deckImage = ImageIO.read(new File("resources/cards.png"));
+        BufferedImage[][] cardImages = new BufferedImage[4][13];
+
+        for(int suit = 0; suit < 4; suit++){
+            for(int rank = 0; rank < 13; rank++){
+                cardImages[suit][rank] = deckImage.getSubimage((rank * width / 13), (suit * height / 4), (width / 13), (height / 4));
+            }
+        }
+        return cardImages[this.getSuit()][this.getRank()];
     }
 }
