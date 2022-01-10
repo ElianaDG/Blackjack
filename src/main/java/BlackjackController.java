@@ -132,12 +132,13 @@ public class BlackjackController {
         dealerCardsTotalLabel.setText(String.valueOf(cardOne.value));
 
         Card cardTwo = deck.nextCard();
+        dealerFaceDown = cardTwo.value;
+        dealerTotal += cardTwo.value;
         if (cardTwo.value == 11 && cardOne.value == 11) {
-            dealerTotal += 1;
+            dealerTotal -= 10;
             dealerFaceDown = 1;
         } else if(cardTwo.value == 11){
-            dealerFaceDown = cardTwo.value;
-            dealerTotal += dealerFaceDown;
+            dealerAces++;
         }
     }
 
