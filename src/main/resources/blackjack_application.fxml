@@ -11,15 +11,17 @@
             fx:controller="BlackjackController"
             prefHeight="400.0" prefWidth="600.0">
 
-    <TextField fx:id="betAmount" GridPane.rowIndex="7" GridPane.columnIndex="6"/>
+    <TextField fx:id="betTextField" GridPane.rowIndex="7" GridPane.columnIndex="6"/>
     <Label fx:id="betLabel" text="Please enter a bet:" GridPane.rowIndex="7" GridPane.columnIndex="5"/>
+    <Label text="Total earnings:" GridPane.rowIndex="8" GridPane.columnIndex="5"/>
+    <Label fx:id="totalEarningsLabel" GridPane.rowIndex="8" GridPane.columnIndex="6"/>
     <Label text="Total:" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
     <Label fx:id="playerCardsTotalLabel" GridPane.rowIndex="4" GridPane.columnIndex="4"/>
-    <Label fx:id="dealerCardsTotalLabel" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
-    <Label text="Total:" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+    <Label fx:id="dealerCardsTotalLabel" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+    <Label text="Total:" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
     <Label fx:id="messageLabel" GridPane.rowIndex="3" GridPane.columnIndex="6"/>
 
-    <Button fx:id="startButton" text="Start Playing" onAction="#onStartRound" GridPane.rowIndex="7" GridPane.columnIndex="2"/>
+    <Button fx:id="startButton" text="New Round" onAction="#onStartRound" GridPane.rowIndex="7" GridPane.columnIndex="2"/>
     <Button fx:id="hitButton" onAction="#onHit" text="Hit" GridPane.rowIndex="7" GridPane.columnIndex="3"/>
     <Button fx:id="standButton" onAction="#onStand" text="Stand" GridPane.rowIndex="7" GridPane.columnIndex="4"/>
 

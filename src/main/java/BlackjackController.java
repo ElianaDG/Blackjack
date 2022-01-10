@@ -10,13 +10,16 @@ public class BlackjackController {
     @FXML
     List<Label> playerCards, dealerCards;
     @FXML
-    TextField betAmount;
+    TextField betTextField;
     @FXML
-    Label totalBetLabel, playerCardsTotalLabel, dealerCardsTotalLabel,
-            messageLabel;
-    int totalBet, earnings;
-    int playerTotal, dealerTotal;
-    int playerAces, dealerAces;
+    Label playerCardsTotalLabel, dealerCardsTotalLabel,
+            messageLabel, totalEarningsLabel;
+    double betAmount;
+    double earnings, totalEarnings;
+    int playerTotal;
+    int dealerTotal;
+    int playerAces;
+    int dealerAces;
     int dealerFaceDown;
     boolean gameInProgress;
 
@@ -24,45 +27,54 @@ public class BlackjackController {
 
     @FXML
     public void initialize(){
-        messageLabel.setText("You must place a bet to enter the round.");
+        messageLabel.setText("Betting is optional");
         gameInProgress = false;
+        betAmount = 0;
+        earnings = 0;
+        totalEarnings = 0;
+        playerTotal = 0;
+        dealerTotal = 0;
+        playerAces = 0;
+        dealerAces = 0;
+        dealerFaceDown = 0;
     }
 
     public void onStartRound(ActionEvent actionEvent) {
         if (gameInProgress == true) {
             messageLabel.setText("There is a game in progress");
         } else {
-            //player must bet to join round
-            if (betAmount.getText() == null) {
+            clearTable();
+            if (betTextField.getText() == null) {
                 messageLabel.setText("You did not enter a bet.");
             } else{
-                //totalBet += Integer.parseInt(betAmount.getText());
-                messageLabel.setText("You bet $" + betAmount.getText());
-                //dealPlayer();
+                try{
+                    betAmount = Integer.parseInt(betTextField.getText());
+                    messageLabel.setText("You bet $" + betTextField.getText());
+                }catch(Exception exc){
+                    messageLabel.setText("You didn't enter a valid bet, so bet is zero");
+                }
             }
             gameInProgress = true;
-           // totalBet += Integer.parseInt(betAmount.getText());
 
-            firstRound();   //player has two face up cards, dealer gets one up and one down
+            firstRound();
 
-            //check for natural blackjacks
             if(dealerTotal == 21 && playerTotal == 21){
-                messageLabel.setText("You and the dealer both have a natural blackjack.");
+                messageLabel.setText("You and the dealer both have a natural blackjack. Stalemate.");
                 gameInProgress = false;
-                roundOver();
             } else if(dealerTotal == 21){
-                messageLabel.setText("The dealer has blackjack. You lose");
+                messageLabel.setText("The dealer has blackjack. You lose $" + betAmount);
+                totalEarnings -= betAmount;
+                totalEarningsLabel.setText(String.valueOf(totalEarnings));
                 gameInProgress = false;
-                roundOver();
             } else if(playerTotal == 21){
-                earnings += (totalBet * 1.5);
+                earnings = (betAmount * 1.5);
                 messageLabel.setText("You have blackjack and the dealer does not. You win " + earnings);
+                totalEarnings += (earnings + betAmount);
+                totalEarningsLabel.setText(String.valueOf(totalEarnings));
                 gameInProgress = false;
-                roundOver();
             } else {
                 messageLabel.setText("Choose to hit or stand.");
             }
-
 
             //dealer cannot double down or split pairs
 
@@ -92,7 +104,7 @@ public class BlackjackController {
         }
     }
 
-    public void dealPlayer() {
+    private void dealPlayer() {
         Card card = deck.nextCard();
         playerTotal += card.value;
         playerCardsTotalLabel.setText(String.valueOf(playerTotal));
@@ -107,26 +119,29 @@ public class BlackjackController {
         }
     }
 
-    public void firstRound() {
+    private void firstRound() {
         dealPlayer();
         dealPlayer();
 
-        Card card = deck.nextCard();
-        dealerTotal += card.value;
-        if (card.value == 11) {
+        Card cardOne = deck.nextCard();
+        dealerTotal += cardOne.value;
+        if (cardOne.value == 11) {
             dealerAces++;
         }
-        dealerCards.get(0).setText(String.valueOf(card.value));
+        dealerCards.get(0).setText(String.valueOf(cardOne.value));
+        dealerCardsTotalLabel.setText(String.valueOf(cardOne.value));
 
-        card = deck.nextCard();
-        dealerFaceDown = card.value;
-        dealerTotal += dealerFaceDown;
-        if (dealerFaceDown == 11) {
-            dealerAces++;
+        Card cardTwo = deck.nextCard();
+        if (cardTwo.value == 11 && cardOne.value == 11) {
+            dealerTotal += 1;
+            dealerFaceDown = 1;
+        } else if(cardTwo.value == 11){
+            dealerFaceDown = cardTwo.value;
+            dealerTotal += dealerFaceDown;
         }
     }
 
-    public void dealersTurn() {
+    private void dealersTurn() {
         dealerCards.get(1).setText(String.valueOf(dealerFaceDown));
         dealerCardsTotalLabel.setText(String.valueOf(dealerTotal));
 
@@ -137,61 +152,65 @@ public class BlackjackController {
                 messageLabel.setText("Dealer has to count Ace as value 1");
                 dealerTotal -= 10;
             }
+            dealerCardsTotalLabel.setText(String.valueOf(dealerTotal));
             for (Label label : dealerCards) {
-                if (label.getText() == null) {
-                    label.setText(String.valueOf(card));
+                if (label.getText().equals("")) {
+                    label.setText(String.valueOf(card.value));
                     break;
                 }
             }
-            dealerCardsTotalLabel.setText(String.valueOf(dealerTotal));
         }
         if (dealerTotal > 21) {
-            earnings += totalBet;
-            messageLabel.setText("Dealer busted. Keep your bet");
+            messageLabel.setText("Dealer busted. You win $" + betAmount);
+            totalEarnings += (betAmount * 2);
+            totalEarningsLabel.setText(String.valueOf(totalEarnings));
             gameInProgress = false;
-            roundOver();
         } else if (playerTotal < dealerTotal ||
                 playerTotal == dealerTotal) {
-            earnings -= totalBet;
-            messageLabel.setText("The dealer beat you. You made $" + earnings + " this round.");
+            messageLabel.setText("The dealer beat you. You lost $" + betAmount + " this round.");
+            totalEarnings -= betAmount;
+            totalEarningsLabel.setText(String.valueOf(totalEarnings));
             gameInProgress = false;
-            roundOver();
         } else {
-            earnings += totalBet;
-            messageLabel.setText("You win $" + earnings);
+            messageLabel.setText("You win $" + betAmount);
+            totalEarnings += (betAmount * 2);
+            totalEarningsLabel.setText(String.valueOf(totalEarnings));
             gameInProgress = false;
-            roundOver();
         }
     }
 
     public void onStand(ActionEvent actionEvent) {
         if (gameInProgress == false) {
             messageLabel.setText("Click Start to begin a new game.");
+        } else{
+            dealersTurn();
         }
-        dealersTurn();
     }
 
     public void onHit(ActionEvent actionEvent) {
         if (gameInProgress == false) {
             messageLabel.setText("Click Start to begin a new game.");
-        }
-        dealPlayer();
-        if (playerTotal > 21 && playerAces > 0) {
-            playerTotal -= 10;
-            playerAces--;
-        } else if(playerTotal > 21 && playerAces == 0){
-            earnings -= totalBet;
-            messageLabel.setText("You busted! This round you made $" + earnings);
-            gameInProgress = false;
-            roundOver();
-        } else if(playerTotal == 21) {
-            messageLabel.setText("You are at 21. STAND!!");
-        } else if (playerTotal < 21){
-            messageLabel.setText("You are at " + playerTotal + ". Choose your next move wisely...");
+        } else{
+            dealPlayer();
+            if (playerTotal > 21 && playerAces > 0) {
+                messageLabel.setText("Your Ace is now a 1");
+                playerTotal -= 10;
+                playerCardsTotalLabel.setText(String.valueOf(playerTotal));
+                playerAces--;
+            } else if(playerTotal > 21 && playerAces == 0){
+                messageLabel.setText("You busted! This round you lost $" + betAmount);
+                totalEarnings -= betAmount;
+                totalEarningsLabel.setText(String.valueOf(totalEarnings));
+                gameInProgress = false;
+            } else if(playerTotal == 21) {
+                messageLabel.setText("You are at 21. STAND!!");
+            } else if (playerTotal < 21){
+                messageLabel.setText("You are at " + playerTotal + ". Choose your next move wisely...");
+            }
         }
     }
 
-    private void roundOver() {
+    private void clearTable() {
         for (Label card : playerCards) {
             card.setText("");
         }
@@ -205,6 +224,7 @@ public class BlackjackController {
         playerCardsTotalLabel.setText("");
         playerTotal = 0;
         playerAces = 0;
+        earnings = 0;
     }
 
 

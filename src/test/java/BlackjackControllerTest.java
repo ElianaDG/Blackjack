@@ -1,7 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -49,20 +48,20 @@ public class BlackjackControllerTest {
         controller.dealerCardsTotalLabel = dealerCardsTotalLabel;
 
         betAmount = mock(TextField.class);
-        controller.betAmount = betAmount;
+        controller.betTextField = betAmount;
     }
 
     @Test
     public void initialize(){
         //given
         givenBlackjackController();
-        doReturn("You must place a bet to enter the round.").when(controller.messageLabel).getText();
+        doReturn("Betting is optional").when(controller.messageLabel).getText();
 
         //when
         controller.initialize();
 
         //then
-        verify(controller.messageLabel).setText("You must place a bet to enter the round.");
+        verify(controller.messageLabel).setText("Betting is optional");
 
     }
 
@@ -75,7 +74,7 @@ public class BlackjackControllerTest {
         doReturn("The dealer has blackjack. You lose").when(controller.messageLabel).getText();
 
         //when
-        controller.firstRound();
+        controller.onStartRound(mock(ActionEvent.class));
 
         //then
         verify(controller.dealerCardsTotalLabel).setText("21");
@@ -92,7 +91,7 @@ public class BlackjackControllerTest {
         doReturn("You have blackjack and the dealer does not. You win " + earnings).when(controller.messageLabel).getText();
 
         //when
-        controller.firstRound();
+        controller.onStartRound(mock(ActionEvent.class));
 
         //then
         verify(controller.dealerCardsTotalLabel).setText("15");
@@ -108,7 +107,7 @@ public class BlackjackControllerTest {
         doReturn("You and the dealer both have a natural blackjack.").when(controller.messageLabel).getText();
 
         //when
-        controller.firstRound();
+        controller.onStartRound(mock(ActionEvent.class));
 
         //then
         verify(controller.dealerCardsTotalLabel).setText("21");
@@ -160,24 +159,6 @@ public class BlackjackControllerTest {
         verify(controller.messageLabel).setText("You are at 21. STAND!!");
 
     }
-    @Test
-    public void onBet(){
-        //given
-        givenBlackjackController();
-        doReturn("50").when(controller.betAmount).getText();
-        doReturn("26").when(controller.playerCardsTotalLabel).getText();
-        doReturn("You bet $50").when(controller.messageLabel).getText();
-
-        //when
-        controller.onBet(mock(ActionEvent.class));
-
-        //then
-        Assert.assertEquals("50", controller.betAmount.getText());
-        verify(controller.playerCardsTotalLabel).setText("26");
-        verify(controller.messageLabel).setText("You bet $50");
-
-    }
-
 
 }
 
