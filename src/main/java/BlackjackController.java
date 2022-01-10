@@ -1,7 +1,12 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -114,6 +119,7 @@ public class BlackjackController {
         for (Label label : playerCards) {
             if (label.getText().equals("")) {
                 label.setText(String.valueOf(card.value));
+                label.applyCss();
                 break;
             }
         }

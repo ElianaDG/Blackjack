@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="BlackjackController"
+            stylesheets="blackjack_application.css"
             prefHeight="400.0" prefWidth="600.0">
 
     <TextField fx:id="betTextField" GridPane.rowIndex="7" GridPane.columnIndex="6"/>
-    <Label fx:id="betLabel" text="Please enter a bet:" GridPane.rowIndex="7" GridPane.columnIndex="5"/>
-    <Label text="Total earnings:" GridPane.rowIndex="8" GridPane.columnIndex="5"/>
+    <Label styleClass="words" fx:id="betLabel" text="Please enter a bet:" GridPane.rowIndex="7" GridPane.columnIndex="5"/>
+    <Label styleClass="words" text="Total earnings:" GridPane.rowIndex="8" GridPane.columnIndex="5"/>
     <Label fx:id="totalEarningsLabel" GridPane.rowIndex="8" GridPane.columnIndex="6"/>
-    <Label text="Total:" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
+    <Label styleClass="words" text="Total:" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
     <Label fx:id="playerCardsTotalLabel" GridPane.rowIndex="4" GridPane.columnIndex="4"/>
     <Label fx:id="dealerCardsTotalLabel" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
-    <Label text="Total:" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+    <Label styleClass="words" text="Total:" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
     <Label fx:id="messageLabel" GridPane.rowIndex="3" GridPane.columnIndex="6"/>
 
     <Button fx:id="startButton" text="New Round" onAction="#onStartRound" GridPane.rowIndex="7" GridPane.columnIndex="2"/>
     <Button fx:id="hitButton" onAction="#onHit" text="Hit" GridPane.rowIndex="7" GridPane.columnIndex="3"/>
     <Button fx:id="standButton" onAction="#onStand" text="Stand" GridPane.rowIndex="7" GridPane.columnIndex="4"/>
 
-    <Label text="Player's Hand:" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    <Label styleClass="words" text="Player's Hand:" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
     <Label fx:id="playerCard1" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
     <Label fx:id="playerCard2" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
     <Label fx:id="playerCard3" GridPane.rowIndex="5" GridPane.columnIndex="3"/>
@@ -38,7 +37,7 @@
     <Label fx:id="playerCard10" GridPane.rowIndex="5" GridPane.columnIndex="10"/>
     <Label fx:id="playerCard11" GridPane.rowIndex="5" GridPane.columnIndex="11"/>
 
-    <Label text="Dealer's Hand:" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <Label styleClass="words" text="Dealer's Hand:" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
     <Label fx:id="dealerCard1" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
     <Label fx:id="dealerCard2" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
     <Label fx:id="dealerCard3" GridPane.rowIndex="1" GridPane.columnIndex="3"/>

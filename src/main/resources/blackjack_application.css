@@ -1,8 +1,8 @@
-Label{
--fx-min-width:50;
--fx-min-height:50;
--fx-border: 1; -fx-border-color:black;
+Label.words{
+-fx-min-width:40;
+-fx-min-height:10;
+-fx-border: 0.5; -fx-border-color:black;
 -fx-border-style: solid;
--fx-padding: 8 8 8 8;
+-fx-padding: 5 5 5 5;
 -fx-background-color: white;
- }
+}
