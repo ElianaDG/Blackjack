@@ -1,56 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
 <GridPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="BlackjackController"
-            prefHeight="400.0" prefWidth="600.0">
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="BlackjackController"
+          stylesheets="blackjack_application.css"
+          prefHeight="400.0" prefWidth="600.0">
 
-    <TextField fx:id="betAmount" />
-    <Label fx:id="totalBetLabel" />
-    <Label fx:id="myCardsTotalLabel"/>
-    <Label fx:id="dealerCardsTotalLabel"/>
-    <Label fx:id="earningsLabel"/>
-    <Label fx:id="errorMessage"/>
-    <Label fx:id="winnerLabel"/>
+    <TextField fx:id="betTextField" GridPane.rowIndex="7" GridPane.columnIndex="6"/>
+    <Label styleClass="words" fx:id="betLabel" text="Please enter a bet:" GridPane.rowIndex="7" GridPane.columnIndex="5"/>
+    <Label styleClass="words" text="Total earnings:" GridPane.rowIndex="8" GridPane.columnIndex="5"/>
+    <Label fx:id="totalEarningsLabel" GridPane.rowIndex="8" GridPane.columnIndex="6"/>
+    <Label styleClass="words" text="Total:" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
+    <Label fx:id="playerCardsTotalLabel" GridPane.rowIndex="4" GridPane.columnIndex="4"/>
+    <Label fx:id="dealerCardsTotalLabel" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+    <Label styleClass="words" text="Total:" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+    <Label fx:id="messageLabel" GridPane.rowIndex="3" GridPane.columnIndex="6"/>
 
-    <Button fx:id="betButton" onAction="#onBet" text="Bet"/>
-    <Button fx:id="hitButton" onAction="#onHit" text="Hit"/>
-    <Button fx:id="standButton" onAction="#onStand" text="Stand"/>
-    <Button fx:id="startButton" text="Start Playing" onAction="#onStartRound"/>
+    <Button fx:id="startButton" text="New Round" onAction="#onStartRound" GridPane.rowIndex="7" GridPane.columnIndex="2"/>
+    <Button fx:id="hitButton" onAction="#onHit" text="Hit" GridPane.rowIndex="7" GridPane.columnIndex="3"/>
+    <Button fx:id="standButton" onAction="#onStand" text="Stand" GridPane.rowIndex="7" GridPane.columnIndex="4"/>
 
+    <Label styleClass="words" text="Player's Hand:" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    <Label fx:id="playerCard1" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+    <Label fx:id="playerCard2" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
+    <Label fx:id="playerCard3" GridPane.rowIndex="5" GridPane.columnIndex="3"/>
+    <Label fx:id="playerCard4" GridPane.rowIndex="5" GridPane.columnIndex="4"/>
+    <Label fx:id="playerCard5" GridPane.rowIndex="5" GridPane.columnIndex="5"/>
+    <Label fx:id="playerCard6" GridPane.rowIndex="5" GridPane.columnIndex="6"/>
+    <Label fx:id="playerCard7" GridPane.rowIndex="5" GridPane.columnIndex="7"/>
+    <Label fx:id="playerCard8" GridPane.rowIndex="5" GridPane.columnIndex="8"/>
+    <Label fx:id="playerCard9" GridPane.rowIndex="5" GridPane.columnIndex="9"/>
+    <Label fx:id="playerCard10" GridPane.rowIndex="5" GridPane.columnIndex="10"/>
+    <Label fx:id="playerCard11" GridPane.rowIndex="5" GridPane.columnIndex="11"/>
 
-    <Label fx:id="playerCard1"  />
-    <Label fx:id="playerCard2"  />
-    <Label fx:id="playerCard3"  />
-    <Label fx:id="playerCard4"  />
-    <Label fx:id="playerCard5"  />
-    <Label fx:id="playerCard6"  />
-    <Label fx:id="playerCard7"  />
-    <Label fx:id="playerCard8"  />
-    <Label fx:id="playerCard9"  />
-    <Label fx:id="playerCard10"  />
-    <Label fx:id="playerCard11"  />
-
-    <Label fx:id="dealerCard1"  />
-    <Label fx:id="dealerCard2"  />
-    <Label fx:id="dealerCard3"  />
-    <Label fx:id="dealerCard4"  />
-    <Label fx:id="dealerCard5"  />
-    <Label fx:id="dealerCard6"  />
-    <Label fx:id="dealerCard7"  />
-    <Label fx:id="dealerCard8"  />
-    <Label fx:id="dealerCard9"  />
-    <Label fx:id="dealerCard10"  />
-    <Label fx:id="dealerCard11"  />
+    <Label styleClass="words" text="Dealer's Hand:" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <Label fx:id="dealerCard1" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <Label fx:id="dealerCard2" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+    <Label fx:id="dealerCard3" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+    <Label fx:id="dealerCard4" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+    <Label fx:id="dealerCard5" GridPane.rowIndex="1" GridPane.columnIndex="5"/>
+    <Label fx:id="dealerCard6" GridPane.rowIndex="1" GridPane.columnIndex="6"/>
+    <Label fx:id="dealerCard7" GridPane.rowIndex="1" GridPane.columnIndex="7"/>
+    <Label fx:id="dealerCard8" GridPane.rowIndex="1" GridPane.columnIndex="8"/>
+    <Label fx:id="dealerCard9" GridPane.rowIndex="1" GridPane.columnIndex="9"/>
+    <Label fx:id="dealerCard10" GridPane.rowIndex="1" GridPane.columnIndex="10"/>
+    <Label fx:id="dealerCard11" GridPane.rowIndex="1" GridPane.columnIndex="11"/>
 
     <fx:define>
-        <ArrayList fx:id="myCardsLabels">
+        <ArrayList fx:id="playerCards">
             <fx:reference source="playerCard1"/>
             <fx:reference source="playerCard2"/>
             <fx:reference source="playerCard3"/>
@@ -63,7 +65,7 @@
             <fx:reference source="playerCard10"/>
             <fx:reference source="playerCard11"/>
         </ArrayList>
-        <ArrayList fx:id="dealerCardsLabels">
+        <ArrayList fx:id="dealerCards">
             <fx:reference source="dealerCard1"/>
             <fx:reference source="dealerCard2"/>
             <fx:reference source="dealerCard3"/>
