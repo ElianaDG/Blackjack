@@ -26,30 +26,30 @@
     <Button fx:id="standButton" onAction="#onStand" text="Stand" GridPane.rowIndex="7" GridPane.columnIndex="4"/>
 
     <Label styleClass="words" text="Player's Hand:" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-    <ImageView fx:id="playerCard1" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
-    <ImageView fx:id="playerCard2" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
-    <ImageView fx:id="playerCard3" GridPane.rowIndex="5" GridPane.columnIndex="3"/>
-    <ImageView fx:id="playerCard4" GridPane.rowIndex="5" GridPane.columnIndex="4"/>
-    <ImageView fx:id="playerCard5" GridPane.rowIndex="5" GridPane.columnIndex="5"/>
-    <ImageView fx:id="playerCard6" GridPane.rowIndex="5" GridPane.columnIndex="6"/>
-    <ImageView fx:id="playerCard7" GridPane.rowIndex="5" GridPane.columnIndex="7"/>
-    <ImageView fx:id="playerCard8" GridPane.rowIndex="5" GridPane.columnIndex="8"/>
-    <ImageView fx:id="playerCard9" GridPane.rowIndex="5" GridPane.columnIndex="9"/>
-    <ImageView fx:id="playerCard10" GridPane.rowIndex="5" GridPane.columnIndex="10"/>
-    <ImageView fx:id="playerCard11" GridPane.rowIndex="5" GridPane.columnIndex="11"/>
+    <Label fx:id="playerCard1" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+    <Label fx:id="playerCard2" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
+    <Label fx:id="playerCard3" GridPane.rowIndex="5" GridPane.columnIndex="3"/>
+    <Label fx:id="playerCard4" GridPane.rowIndex="5" GridPane.columnIndex="4"/>
+    <Label fx:id="playerCard5" GridPane.rowIndex="5" GridPane.columnIndex="5"/>
+    <Label fx:id="playerCard6" GridPane.rowIndex="5" GridPane.columnIndex="6"/>
+    <Label fx:id="playerCard7" GridPane.rowIndex="5" GridPane.columnIndex="7"/>
+    <Label fx:id="playerCard8" GridPane.rowIndex="5" GridPane.columnIndex="8"/>
+    <Label fx:id="playerCard9" GridPane.rowIndex="5" GridPane.columnIndex="9"/>
+    <Label fx:id="playerCard10" GridPane.rowIndex="5" GridPane.columnIndex="10"/>
+    <Label fx:id="playerCard11" GridPane.rowIndex="5" GridPane.columnIndex="11"/>
 
     <Label styleClass="words" text="Dealer's Hand:" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-    <ImageView fx:id="dealerCard1" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-    <ImageView fx:id="dealerCard2" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-    <ImageView fx:id="dealerCard3" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
-    <ImageView fx:id="dealerCard4" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
-    <ImageView fx:id="dealerCard5" GridPane.rowIndex="1" GridPane.columnIndex="5"/>
-    <ImageView fx:id="dealerCard6" GridPane.rowIndex="1" GridPane.columnIndex="6"/>
-    <ImageView fx:id="dealerCard7" GridPane.rowIndex="1" GridPane.columnIndex="7"/>
-    <ImageView fx:id="dealerCard8" GridPane.rowIndex="1" GridPane.columnIndex="8"/>
-    <ImageView fx:id="dealerCard9" GridPane.rowIndex="1" GridPane.columnIndex="9"/>
-    <ImageView fx:id="dealerCard10" GridPane.rowIndex="1" GridPane.columnIndex="10"/>
-    <ImageView fx:id="dealerCard11" GridPane.rowIndex="1" GridPane.columnIndex="11"/>
+    <Label fx:id="dealerCard1" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <Label fx:id="dealerCard2" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+    <Label fx:id="dealerCard3" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+    <Label fx:id="dealerCard4" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+    <Label fx:id="dealerCard5" GridPane.rowIndex="1" GridPane.columnIndex="5"/>
+    <Label fx:id="dealerCard6" GridPane.rowIndex="1" GridPane.columnIndex="6"/>
+    <Label fx:id="dealerCard7" GridPane.rowIndex="1" GridPane.columnIndex="7"/>
+    <Label fx:id="dealerCard8" GridPane.rowIndex="1" GridPane.columnIndex="8"/>
+    <Label fx:id="dealerCard9" GridPane.rowIndex="1" GridPane.columnIndex="9"/>
+    <Label fx:id="dealerCard10" GridPane.rowIndex="1" GridPane.columnIndex="10"/>
+    <Label fx:id="dealerCard11" GridPane.rowIndex="1" GridPane.columnIndex="11"/>
 
     <fx:define>
         <ArrayList fx:id="playerCards">
